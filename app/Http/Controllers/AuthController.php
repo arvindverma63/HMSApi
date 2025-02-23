@@ -53,11 +53,13 @@ class AuthController extends Controller
             'role' => 'required|string|in:accountant,doctor,nurse,pathologist,radiologist,receptionist',
         ]);
 
+        $hospitalId = "H".time();
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'role' => $request->role,
+            'hospitalId'=>$hospitalId,
         ]);
 
         return response()->json([
