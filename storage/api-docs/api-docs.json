@@ -6,6 +6,186 @@
         "version": "1.0.0"
     },
     "paths": {
+        "/api/admin/permissions": {
+            "get": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "Get all permissions",
+                "description": "Get all permissions.",
+                "operationId": "3df8f5b1c9c501b057501a57dc2f5196",
+                "responses": {
+                    "200": {
+                        "description": "List of all permissions"
+                    },
+                    "403": {
+                        "description": "Unauthorized action"
+                    },
+                    "404": {
+                        "description": "No permissions found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "Create a new permission",
+                "description": "Create a new permission.",
+                "operationId": "12f4b51e565f130448ac5bde72326728",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "edit_users"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Permission to edit user details",
+                                        "nullable": true
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Permission created successfully"
+                    },
+                    "400": {
+                        "description": "Validation error"
+                    },
+                    "403": {
+                        "description": "Unauthorized action"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/admin/permissions/assign": {
+            "post": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "Assign a permission to a role",
+                "description": "Assign a permission to a role.",
+                "operationId": "34d5cf0bff0b7e26e99b3c58ea29e201",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "permission_id",
+                                    "role"
+                                ],
+                                "properties": {
+                                    "permission_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "role": {
+                                        "type": "string",
+                                        "example": "doctor"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Permission assigned to role successfully"
+                    },
+                    "400": {
+                        "description": "Validation error"
+                    },
+                    "403": {
+                        "description": "Unauthorized action"
+                    },
+                    "404": {
+                        "description": "Permission not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/admin/permissions/revoke": {
+            "delete": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "Revoke a permission from a role",
+                "description": "Revoke a permission from a role.",
+                "operationId": "6119b97cc51af063cd572ecd6a3ca25c",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "permission_id",
+                                    "role"
+                                ],
+                                "properties": {
+                                    "permission_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "role": {
+                                        "type": "string",
+                                        "example": "doctor"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Permission revoked from role successfully"
+                    },
+                    "400": {
+                        "description": "Validation error"
+                    },
+                    "403": {
+                        "description": "Unauthorized action"
+                    },
+                    "404": {
+                        "description": "Permission or assignment not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
         "/api/admin/users": {
             "post": {
                 "tags": [

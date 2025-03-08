@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminControllers\PermissionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -28,5 +29,10 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/users', [UserController::class, 'addUsers']);          // Add a new user
         Route::get('/users/{role}', [UserController::class, 'getUsersByRole']); // Get users by role
         Route::delete('/users/{id}', [UserController::class, 'deleteUser']);    // Delete a user by ID
+
+        Route::post('/permissions', [PermissionController::class, 'createPermission']);
+        Route::get('/permissions', [PermissionController::class, 'getPermissions']);
+        Route::post('/permissions/assign', [PermissionController::class, 'assignPermissionToRole']);
+        Route::delete('/permissions/revoke', [PermissionController::class, 'revokePermissionFromRole']);
     });
 });
