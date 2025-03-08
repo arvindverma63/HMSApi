@@ -353,7 +353,7 @@
                                     },
                                     "role": {
                                         "type": "string",
-                                        "example": "accountant|doctor|nurse|pathologist|radiologist|receptionist"
+                                        "example": "admin"
                                     }
                                 },
                                 "type": "object"

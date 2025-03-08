@@ -37,7 +37,7 @@ class AuthController extends Controller
      *             @OA\Property(property="name", type="string", example="John Doe"),
      *             @OA\Property(property="email", type="string", example="john@example.com"),
      *             @OA\Property(property="password", type="string", example="password123"),
-     *             @OA\Property(property="role", type="string", example="accountant|doctor|nurse|pathologist|radiologist|receptionist")
+     *             @OA\Property(property="role", type="string", example="admin")
      *         )
      *     ),
      *     @OA\Response(response=201, description="User registered successfully and OTP sent"),
@@ -50,7 +50,7 @@ class AuthController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6',
-            'role' => 'required|string|in:accountant,doctor,nurse,pathologist,radiologist,receptionist,admin',
+            'role' => 'required|string|in:admin',
         ]);
 
         $hospitalId = "H".time();
